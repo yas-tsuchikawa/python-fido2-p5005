@@ -1,52 +1,48 @@
 == WebAuthn Server Example
-この例は、python-fido2を使用してWebAuthnクレデンシャル登録を実装し、使用する最小限のWebサイトを示しています。
-https://github.com/Yubico/python-fido2/tree/main/examples/server を
-・ポート番号5000 → 5005に変更
-・debugモードON
-にしたものです。
+This example shows a minimal website that uses python-fido2 to implement
+WebAuthn credential registration, and use.
 
 
-=== 実行
-このサンプルを実行するには、`poetry`が必要です。 
-`poetry`のインストール手順については、
-https://python-poetry.org/
-https://qiita.com/shun198/items/97483a227f288ad58112
-https://qiita.com/ksato9700/items/b893cf1db83605898d8a
-が参考になります。
+=== Running
+To run this sample, you will need `poetry`. For instructions on installing
+`poetry`, see https://python-poetry.org/.
 
-
-ディレクトリで次のコマンドを実行して、pythonライブラリ環境を準備します。
+Run the following command in the `examples/server` directory to set up the
+example:
 
   $ poetry install
 
-環境が作成されたら、次のコマンドを実行してサーバーを実行できます。
+Once the environment has been created, you can run the server by running:
 
   $ poetry run server
 
-サーバーが実行されているときは、WebAuthn をサポートするブラウザを使用して、
-http://localhost:5005 を開いて Web サイトにアクセスします。
+When the server is running, use a browser supporting WebAuthn and open
+http://localhost:5000 to access the website.
 
-メモ: Webauthn には、有効な TLS 証明書の取得を伴うセキュア コンテキスト (HTTPS) が必要です。しかし、ほとんどのブラウザは
-http://localhost を安全なコンテキストとして扱います。この例はデモとしてTLSなしで実行されますが、それ以外の場合は、Webauthnを使用するときは常に有効な証明書でHTTPSを使用する必要があります。
+NOTE: Webauthn requires a secure context (HTTPS), which involves
+obtaining a valid TLS certificate. However, most browsers also treat
+http://localhost as a secure context. This example runs without TLS
+as a demo, but otherwise you should always use HTTPS with a valid
+certificate when using Webauthn.
 
-=== ウェブサイトの使用
-このサイトでは、WebAuthn資格情報を登録し、認証することができます。資格情報はメモリにのみ保存され、サーバーを停止すると、登録された資格情報を「忘れる」ことになります。
+=== Using the website
+The site allows you to register a WebAuthn credential, and to authenticate it.
+Credentials are only stored in memory, and stopping the server will cause it to
+"forget" any registered credentials.
 
-==== 登録
-1. `Register` リンクをクリックして認証を開始します。
-2. パスキーを保存する場所を指定するダイアログが出ます。「別のスマートフォン・・・」を選択するとQRコードが表示されます。
-3. QRコードをスマホのカメラで撮影すると、撮影画面に「パスキーを保存」ボタンが表示されるのでタッチします。FaceIDなどで承認すると、パスキーがスマホに保存されます。
-4. 登録が成功したかどうかがポップアップ表示されます。「OK」をクリックします。
-5. パスキーはiPhone(iOS18)の場合、「パスワード」アプリの「パスキー」から確認することができます。
+==== Registration
+1. Click on the `Register` link to begin credential registration.
+2. If not already inserted, insert your U2F/FIDO2 Authenticator now.
+3. Touch the button to activate the Authenticator.
+4. A popup will indicate whether the registration was successful. Click `OK`.
 
-==== 認証
-メモ: 認証する前に資格情報を登録する必要があります。
+==== Authentication
+NOTE: You must register a credential prior to authentication.
 
-1. `Authenticate` リンクをクリックして認証を開始します。
-2. パスキーでサインインするか確認ダイアログがポップアップされ、パスキーの保存場所を選択する画面になります。
-3. MacとiPhoneが同じApple IDで連携されている場合はiCloudキーチェーンでも認証できます。また「別のスマートフォン・・・」を選択するとQRコードが表示されます。
-3. QRコードをスマホのカメラで撮影すると、撮影画面に「パスキーでサインイン」ボタンが表示されるのでタッチします。FaceIDなどで承認すると、認証されます。
-4. 認証が成功したかどうかがポップアップ表示されます。`OK`.をクリックします。
+1. Click on the `Authenticate` link to begin authentication.
+2. If not already inserted, insert your U2F/FIDO2 Authenticator now.
+3. Touch the button to activate the Authenticator.
+4. A popup will indicate whether the authentication was successful. Click `OK`.
 
 === Supporting existing U2F credentials
 If you have existing U2F credentials that you wish to support, this library
