@@ -1,14 +1,9 @@
 == WebAuthn Server Example
 この例は、python-fido2を使用してWebAuthnクレデンシャル登録を実装し、使用する最小限のWebサイトを示しています。
-https://github.com/Yubico/python-fido2/tree/main/examples/server を少し変更したものです
+https://github.com/Yubico/python-fido2/tree/main/examples/server を
 ・ポート番号5000 → 5005に変更
 ・debugモードON
 にしたものです。
-
-=== 概要
-ソースにて、ユーザー名「a_user」とハードコーディングされているので、登録は1アカウント分だけ登録して、それを認証するだけの簡易なものです。
-実行した後はCtrl-Cで終了します。
-認証情報は配列に記憶しているだけなので、終了すると消えます。
 
 
 === 実行
