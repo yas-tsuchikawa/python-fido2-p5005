@@ -42,8 +42,8 @@ import os
 
 app = Flask(__name__, static_url_path="")
 
-#CERTFILE = 'cert.crt'
-#KEYFILE = 'cert.key'
+#CERTFILE = 'server/cert.crt'
+#KEYFILE = 'server/cert.key'
 #context = (CERTFILE, KEYFILE)
 
 app.secret_key = os.urandom(32)  # Used for session.
